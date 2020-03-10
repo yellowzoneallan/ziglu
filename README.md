@@ -2,4 +2,4 @@
 ziglu
 
 
-kubectl apply -f https://raw.githubusercontent.com/yellowzoneallan/ziglu/ziglu.yaml
+kubectl apply -f https://raw.githubusercontent.com/yellowzoneallan/ziglu/master/ziglu.yaml
