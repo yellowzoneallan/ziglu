@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ziglu-deployment
+  labels:
+    app: ziglu
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: ziglu
+  template:
+    metadata:
+      labels:
+        app: ziglu
+    spec:
+      containers:
+      - name: ziglu
+        image: docker.io/yellowzone/ziglu:latest
+        ports:
+        - containerPort: 5555
