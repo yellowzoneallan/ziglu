@@ -20,24 +20,3 @@ spec:
         ports:
         - containerPort: 5555
 
-kind: ClusterRole
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: deployments-list
-rules:
-- apiGroups: ["", "AppsV1Api"]
-  resources: ["deployments"]
-  verbs: ["get", "list", "watch"]
-
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: deployments-list
-subjects:
-- kind: ServiceAccount
-  name: default
-  namespace: default
-roleRef:
-  kind: ClusterRole
-  name: deployments-list
-  apiGroup: rbac.authorization.k8s.io
