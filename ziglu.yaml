@@ -19,14 +19,16 @@ spec:
         image: docker.io/yellowzone/ziglu:latest
         ports:
         - containerPort: 5555
+
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: deployments-list
 rules:
-- apiGroups: [""]
+- apiGroups: ["", "AppsV1Api"]
   resources: ["deployments"]
-  verbs: ["list"]
+  verbs: ["get", "list", "watch"]
+
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
@@ -37,5 +39,5 @@ subjects:
   namespace: default
 roleRef:
   kind: ClusterRole
-  name: pods-list
+  name: deployments-list
   apiGroup: rbac.authorization.k8s.io
