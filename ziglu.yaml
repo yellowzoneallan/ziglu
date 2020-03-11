@@ -5,7 +5,7 @@ metadata:
   labels:
     app: ziglu
 spec:
-  replicas: 4
+  replicas: 1
   selector:
     matchLabels:
       app: ziglu
@@ -19,3 +19,23 @@ spec:
         image: docker.io/yellowzone/ziglu:latest
         ports:
         - containerPort: 5555
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: deployments-list
+rules:
+- apiGroups: [""]
+  resources: ["deployments"]
+  verbs: ["list"]
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: deployments-list
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: pods-list
+  apiGroup: rbac.authorization.k8s.io
